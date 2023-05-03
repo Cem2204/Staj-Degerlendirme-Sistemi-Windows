@@ -120,6 +120,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -134,6 +135,201 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CollapseLeft.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EditRowLeft.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EndPoint.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ExpandRight.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SaveAs.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\StartPoint.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Trash.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-first-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CollapseLeft1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EditRowLeft1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EndPoint1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ExpandRight1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-first-501.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-last-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-next-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-previous-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SaveAs1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\StartPoint1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Trash1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CollapseLeft2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CollapseLeft3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EditRowLeft2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EndPoint2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ExpandRight2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-edit-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-first-502.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-last-501.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-next-501.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-previous-501.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-save-as-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-waste-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SaveAs2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\StartPoint2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Trash2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CollapseLeft4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EditRowLeft3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EndPoint3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ExpandRight3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-add-new-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-edit-501.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-first-503.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-last-502.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-next-502.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-previous-502.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-save-as-501.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-waste-501.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SaveAs3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\StartPoint3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Trash3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CollapseLeft5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EditRowLeft4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EndPoint4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ExpandRight4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-add-new-501.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-edit-502.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-first-504.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-google-web-search-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-last-503.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-next-503.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-previous-503.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-save-as-502.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-waste-502.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SaveAs4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\StartPoint4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Trash4.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -61,6 +61,11 @@ namespace Project
                 if (userType == "0")
                 {
                     MessageBox.Show("Görevli Giriş Yaptı.");
+                    Form2 form2 = new Form2();
+                    this.Hide();
+                    form2.Show();
+
+
                 }
                 else if (userType == "1")
                 {
