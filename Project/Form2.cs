@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Numerics;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -21,23 +22,23 @@ namespace Project
             InitializeComponent();
             
         }
-        private void verileriOku(int kayiti, string sKodu, int x)
+        private void verileriOku(int kayiti, string sKodu, int x, int y = 0)
         {
             string ogrbqueryString = "";
             string stabqueryString = "";
             if (x == 0) {
                 ogrbqueryString = $"SELECT ID, TCNO, Ad, Soyad, OGRNO, Sinif, TELNO, EMail FROM ogrencibilgileri WHERE ID = {kayiti}";
-                stabqueryString = $"SELECT StajYeri, StajBaslangic, StajBaslangicOnay, StajBitis, StajBitisOnay, StajEvrakTeslim, ZstajYazi, ENDYazi, DilekceVerildiMi, KabulGetirdiMi, Mustehaklik, KimlikFotokopi, StajDegerlendirmeF, StajRap, Aciklama FROM stajbilgileri WHERE ogrenci_ID = {kayiti}";
+                stabqueryString = $"SELECT StajYeri, StajBaslangic, StajBaslangicOnay, StajBitis, StajBitisOnay, StajEvrakTeslim, ZstajYazi, ENDYazi, DilekceVerildiMi, KabulGetirdiMi, Mustehaklik, KimlikFotokopi, StajDegerlendirmeF, StajRap, Aciklama FROM stajbilgileri WHERE ogrenci_ID = {kayiti} AND StajType = {y}";
             }
             else if(x == 1)
             {
                 ogrbqueryString = $"SELECT ID,TCNO, Ad, Soyad, OGRNO, Sinif, TELNO, EMail FROM ogrencibilgileri ORDER BY ID DESC LIMIT 1";
-                stabqueryString = $"SELECT StajYeri, StajBaslangic, StajBaslangicOnay, StajBitis, StajBitisOnay, StajEvrakTeslim, ZstajYazi, ENDYazi, DilekceVerildiMi, KabulGetirdiMi, Mustehaklik, KimlikFotokopi, StajDegerlendirmeF, StajRap, Aciklama FROM stajbilgileri ORDER BY ogrenci_ID DESC LIMIT 1";
+                stabqueryString = $"SELECT StajYeri, StajBaslangic, StajBaslangicOnay, StajBitis, StajBitisOnay, StajEvrakTeslim, ZstajYazi, ENDYazi, DilekceVerildiMi, KabulGetirdiMi, Mustehaklik, KimlikFotokopi, StajDegerlendirmeF, StajRap, Aciklama FROM stajbilgileri AND StajType = {y} ORDER BY ogrenci_ID DESC LIMIT 1";
             }
             else if (x == 2)
             {
                 ogrbqueryString = $"SELECT ID, TCNO, Ad, Soyad, OGRNO, Sinif, TELNO, EMail FROM ogrencibilgileri ORDER BY ID LIMIT 1";
-                stabqueryString = $"SELECT StajYeri, StajBaslangic, StajBaslangicOnay, StajBitis, StajBitisOnay, StajEvrakTeslim, ZstajYazi, ENDYazi, DilekceVerildiMi, KabulGetirdiMi, Mustehaklik, KimlikFotokopi, StajDegerlendirmeF, StajRap, Aciklama FROM stajbilgileri ORDER BY ogrenci_ID LIMIT 1";
+                stabqueryString = $"SELECT StajYeri, StajBaslangic, StajBaslangicOnay, StajBitis, StajBitisOnay, StajEvrakTeslim, ZstajYazi, ENDYazi, DilekceVerildiMi, KabulGetirdiMi, Mustehaklik, KimlikFotokopi, StajDegerlendirmeF, StajRap, Aciklama FROM stajbilgileri AND StajType = {y} ORDER BY ogrenci_ID LIMIT 1";
 
             }
             MySqlCommand ogrcommand = new MySqlCommand(ogrbqueryString, connection);
@@ -63,6 +64,7 @@ namespace Project
                 ogrNoTB.Text = OGRNO.ToString();
                 telNOTB.Text = TelNo.ToString();
                 emailTB.Text = eposta;
+                sinifTB.Text = sinif.ToString();
 
             }
 
@@ -107,6 +109,64 @@ namespace Project
             reader2.Close();
             connection.Close();
         }
+        private void kayitEkle()
+        {
+
+        }
+        private void kaydet()
+        {
+            int satir;
+            connection.Open();
+            MySqlCommand komut = new MySqlCommand();
+            komut.CommandText = "INSERT INTO `ogrencibilgileri` (`ID`, `TCNO`, `Ad`, `Soyad`, `OGRNO`, `Sinif`, `TELNO`, `EMail`) VALUES (@Kayitno, @TC, @Ad, @Soyad, @OGRNO, @Sinif, @TelNo, @Mail)";
+            komut.Parameters.AddWithValue("@Kayitno",Convert.ToInt32(kayitNoTB.Text));
+            komut.Parameters.AddWithValue("@TC", Convert.ToInt64(tcTB.Text));
+            komut.Parameters.AddWithValue("@Ad", adTB.Text);
+            komut.Parameters.AddWithValue("@Soyad", soyadTB.Text);
+            komut.Parameters.AddWithValue("@OGRNO", Convert.ToInt32(ogrNoTB.Text));
+            komut.Parameters.AddWithValue("@Sinif", Convert.ToInt32(sinifTB.Text));
+            komut.Parameters.AddWithValue("@TelNo", Convert.ToInt64(telNOTB.Text));
+            komut.Parameters.AddWithValue("@Mail", emailTB.Text);
+            komut.Connection = connection;
+            satir = komut.ExecuteNonQuery();
+            MessageBox.Show(satir + " öğrenci eklendi");
+            komut.Dispose();
+            MySqlCommand komut2 = new MySqlCommand();
+            komut2.CommandText = "INSERT INTO `stajbilgileri` (`ogrenci_ID`, `staj_ID`, `StajType`, `StajYeri`, `StajBaslangic`, `StajBaslangicOnay`, `StajBitis`, `StajBitisOnay`, `StajEvrakTeslim`, `ZStajYazi`, `ENDYazi`, `DilekceVerildiMi`, `KabulGetirdiMi`, `Mustehaklik`, `KimlikFotokopi`, `StajDegerlendirmeF`, `StajRap`, `Aciklama`)" +
+                " VALUES (@KayitNo, NULL, @StajTipi,@StajYeri, @BaslangicT, @BasladiMi, @BitisT, @BittiMi, @TeslimEdildiMi, @Zyazi,@ENDYazi, @DilekceVerildiMi, @KabulGetirdiMi, @Mustehaklik, @KimlikFotokopi, @StajDegerlendirmeF, @StajRap, @Aciklama)";
+            komut2.Parameters.AddWithValue("@Kayitno", Convert.ToInt32(kayitNoTB.Text));
+            komut2.Parameters.AddWithValue("@StajTipi", stajKODCB.SelectedIndex);
+            komut2.Parameters.AddWithValue("@StajYeri", stajYerTB.Text);
+            komut2.Parameters.AddWithValue("@BaslangicT", dateTimePicker1.Value);
+            if (stajStartCB.Checked){komut2.Parameters.AddWithValue("@BasladiMi", 1);}
+            else { komut2.Parameters.AddWithValue("BasladiMi", 0);}
+            
+  
+            komut2.Parameters.AddWithValue("@BitisT", dateTimePicker2.Value);
+            if (stajBitisCB.Checked) { komut2.Parameters.AddWithValue("@BittiMi", 1); }
+            else { komut2.Parameters.AddWithValue("BittiMi", 0); }
+            if (stajTeslimCB.Checked) { komut2.Parameters.AddWithValue("@TeslimEdildiMi", 1); }
+            else { komut2.Parameters.AddWithValue("@TeslimEdildiMi", 0); }
+            komut2.Parameters.AddWithValue("@Zyazi", Convert.ToInt32(zStajYTB.Text));
+            komut2.Parameters.AddWithValue("@ENDYazi", Convert.ToInt32(endTB.Text));
+            if (bDilekceCBOX.Checked) { komut2.Parameters.AddWithValue("@DilekceVerildiMi", 1); }
+            else { komut2.Parameters.AddWithValue("@DilekceVerildiMi", 0); }
+            if (kabulCBOX.Checked) { komut2.Parameters.AddWithValue("@KabulGetirdiMi", 1); }
+            else { komut2.Parameters.AddWithValue("@@KabulGetirdiMi", 0); }
+            if (mustehakCBOX.Checked) { komut2.Parameters.AddWithValue("@Mustehaklik", 1); }
+            else { komut2.Parameters.AddWithValue("@Mustehaklik", 0); }
+            if (kfotokCBOX.Checked) { komut2.Parameters.AddWithValue("@KimlikFotokopi", 1); }
+            else { komut2.Parameters.AddWithValue("@KimlikFotokopi", 0); }
+            if (dFormCBOX.Checked) { komut2.Parameters.AddWithValue("@StajDegerlendirmeF", 1); }
+            else { komut2.Parameters.AddWithValue("@StajDegerlendirmeF", 0); }
+            if (sRaporCBOX.Checked) { komut2.Parameters.AddWithValue("@StajRap", 1); }
+            else { komut2.Parameters.AddWithValue("@StajRap", 0); }
+            komut2.Parameters.AddWithValue("@Aciklama", aciklamaRTB.Text);
+            komut2.Connection = connection;
+            komut2.Dispose();
+
+            connection.Close();
+        }
 
         private void Form2_Load(object sender, EventArgs e)
         {
@@ -120,9 +180,20 @@ namespace Project
         private void searchBTN_Click(object sender, EventArgs e)
         {
             int x = 0;
+            int y;
+            if(stajKODCB.SelectedIndex == 0)
+            {
+                 y = 0;
+
+            }
+            else
+            {
+                 y = 1;
+            }
+
             string sKodu = stajKODCB.Text;
             int kayiti = Convert.ToInt32(kayitNoTB.Text);
-            verileriOku(kayiti, sKodu,x);
+            verileriOku(kayiti, sKodu,x,y);
         }
 
         private void stajTeslimCB_CheckedChanged(object sender, EventArgs e)
@@ -146,6 +217,7 @@ namespace Project
             string sKodu = stajKODCB.Text;
             int kayiti = Convert.ToInt32(kayitNoTB.Text);
             kayiti = kayiti - 1;
+            if(kayiti < 1) { kayiti = 1; }
             verileriOku(kayiti, sKodu,x);
             kayitNoTB.Text = kayiti.ToString();
         }
@@ -173,6 +245,46 @@ namespace Project
             kayiti = sonsayi;
             verileriOku(kayiti, sKodu, x);
             kayitNoTB.Text = kayiti.ToString();
+        }
+
+        private void addBTN_Click(object sender, EventArgs e)
+        {
+            
+            tcTB.Text = "";
+            adTB.Text = "";
+            soyadTB.Text = "";
+            ogrNoTB.Text = "";
+            telNOTB.Text = "";
+            emailTB.Text = "";
+            sinifTB.Text = "";
+            stajKODCB.SelectedIndex = 0;
+            stajYerTB.Text = "";
+            dateTimePicker1.Value = new DateTime(2023,1,1);
+            dateTimePicker2.Value = new DateTime(2023, 1, 1);
+            stajStartCB.Checked = false;
+            stajBitisCB.Checked = false;
+            stajTeslimCB.Checked = false;
+            zStajYTB.Text = "";
+            endTB.Text = "";
+            bDilekceCBOX.Checked = false;
+            kabulCBOX.Checked = false;
+            mustehakCBOX.Checked = false;
+            kfotokCBOX.Checked = false;
+            dFormCBOX.Checked = false;
+            sRaporCBOX.Checked = false;
+            aciklamaRTB.Text = "";
+            connection.Open();
+            string sayimquery = "SELECT COUNT(ID) FROM ogrencibilgileri";
+            MySqlCommand symcomand = new MySqlCommand(sayimquery, connection);
+            int sonsayi = Convert.ToInt32(symcomand.ExecuteScalar());
+            connection.Close();
+            kayitNoTB.Text = (sonsayi+1).ToString();
+
+        }
+
+        private void saveBTN_Click(object sender, EventArgs e)
+        {
+            kaydet();
         }
     }
 }

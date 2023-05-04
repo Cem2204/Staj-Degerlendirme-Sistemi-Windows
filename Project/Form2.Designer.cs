@@ -82,7 +82,7 @@
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.sinifCB = new System.Windows.Forms.GroupBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.sinifTB = new System.Windows.Forms.TextBox();
             this.ogrNoTB = new System.Windows.Forms.TextBox();
             this.soyadTB = new System.Windows.Forms.TextBox();
             this.adTB = new System.Windows.Forms.TextBox();
@@ -226,6 +226,7 @@
             this.addBTN.Size = new System.Drawing.Size(68, 59);
             this.addBTN.TabIndex = 6;
             this.addBTN.UseVisualStyleBackColor = false;
+            this.addBTN.Click += new System.EventHandler(this.addBTN_Click);
             // 
             // deleteBTN
             // 
@@ -249,6 +250,7 @@
             this.saveBTN.Size = new System.Drawing.Size(68, 59);
             this.saveBTN.TabIndex = 8;
             this.saveBTN.UseVisualStyleBackColor = false;
+            this.saveBTN.Click += new System.EventHandler(this.saveBTN_Click);
             // 
             // pictureBox1
             // 
@@ -727,7 +729,7 @@
             // 
             // sinifCB
             // 
-            this.sinifCB.Controls.Add(this.comboBox1);
+            this.sinifCB.Controls.Add(this.sinifTB);
             this.sinifCB.Controls.Add(this.ogrNoTB);
             this.sinifCB.Controls.Add(this.soyadTB);
             this.sinifCB.Controls.Add(this.adTB);
@@ -745,14 +747,14 @@
             this.sinifCB.TabIndex = 2;
             this.sinifCB.TabStop = false;
             // 
-            // comboBox1
+            // sinifTB
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(251, 234);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(4);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(331, 24);
-            this.comboBox1.TabIndex = 3;
+            this.sinifTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sinifTB.Location = new System.Drawing.Point(251, 236);
+            this.sinifTB.Margin = new System.Windows.Forms.Padding(4);
+            this.sinifTB.Name = "sinifTB";
+            this.sinifTB.Size = new System.Drawing.Size(331, 29);
+            this.sinifTB.TabIndex = 12;
             // 
             // ogrNoTB
             // 
@@ -925,7 +927,6 @@
         private System.Windows.Forms.TextBox stajYerTB;
         private System.Windows.Forms.TextBox emailTB;
         private System.Windows.Forms.TextBox telNOTB;
-        private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.TextBox ogrNoTB;
         private System.Windows.Forms.TextBox soyadTB;
         private System.Windows.Forms.TextBox adTB;
@@ -945,5 +946,6 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.CheckBox stajBitisCB;
         private System.Windows.Forms.CheckBox stajTeslimCB;
+        private System.Windows.Forms.TextBox sinifTB;
     }
 }
