@@ -26,19 +26,21 @@ namespace Project
         {
             string ogrbqueryString = "";
             string stabqueryString = "";
+            
             if (x == 0) {
                 ogrbqueryString = $"SELECT ID, TCNO, Ad, Soyad, OGRNO, Sinif, TELNO, EMail FROM ogrencibilgileri WHERE ID = {kayiti}";
                 stabqueryString = $"SELECT StajYeri, StajBaslangic, StajBaslangicOnay, StajBitis, StajBitisOnay, StajEvrakTeslim, ZstajYazi, ENDYazi, DilekceVerildiMi, KabulGetirdiMi, Mustehaklik, KimlikFotokopi, StajDegerlendirmeF, StajRap, Aciklama FROM stajbilgileri WHERE ogrenci_ID = {kayiti} AND StajType = {y}";
+                
             }
             else if(x == 1)
             {
                 ogrbqueryString = $"SELECT ID,TCNO, Ad, Soyad, OGRNO, Sinif, TELNO, EMail FROM ogrencibilgileri ORDER BY ID DESC LIMIT 1";
-                stabqueryString = $"SELECT StajYeri, StajBaslangic, StajBaslangicOnay, StajBitis, StajBitisOnay, StajEvrakTeslim, ZstajYazi, ENDYazi, DilekceVerildiMi, KabulGetirdiMi, Mustehaklik, KimlikFotokopi, StajDegerlendirmeF, StajRap, Aciklama FROM stajbilgileri AND StajType = {y} ORDER BY ogrenci_ID DESC LIMIT 1";
+                stabqueryString = $"SELECT StajYeri, StajBaslangic, StajBaslangicOnay, StajBitis, StajBitisOnay, StajEvrakTeslim, ZstajYazi, ENDYazi, DilekceVerildiMi, KabulGetirdiMi, Mustehaklik, KimlikFotokopi, StajDegerlendirmeF, StajRap, Aciklama FROM stajbilgileri WHERE StajType = {y} ORDER BY ogrenci_ID DESC LIMIT 1";
             }
             else if (x == 2)
             {
                 ogrbqueryString = $"SELECT ID, TCNO, Ad, Soyad, OGRNO, Sinif, TELNO, EMail FROM ogrencibilgileri ORDER BY ID LIMIT 1";
-                stabqueryString = $"SELECT StajYeri, StajBaslangic, StajBaslangicOnay, StajBitis, StajBitisOnay, StajEvrakTeslim, ZstajYazi, ENDYazi, DilekceVerildiMi, KabulGetirdiMi, Mustehaklik, KimlikFotokopi, StajDegerlendirmeF, StajRap, Aciklama FROM stajbilgileri AND StajType = {y} ORDER BY ogrenci_ID LIMIT 1";
+                stabqueryString = $"SELECT StajYeri, StajBaslangic, StajBaslangicOnay, StajBitis, StajBitisOnay, StajEvrakTeslim, ZstajYazi, ENDYazi, DilekceVerildiMi, KabulGetirdiMi, Mustehaklik, KimlikFotokopi, StajDegerlendirmeF, StajRap, Aciklama FROM stajbilgileri WHERE StajType = {y} ORDER BY ogrenci_ID LIMIT 1";
 
             }
             MySqlCommand ogrcommand = new MySqlCommand(ogrbqueryString, connection);
@@ -70,49 +72,99 @@ namespace Project
 
             reader.Close();
             MySqlDataReader reader2 = stacommand.ExecuteReader();
-
-            while (reader2.Read())
+            if (reader2.HasRows)
             {
-                string stajYeri = reader2.GetString(0);
-                DateTime stajBaslangic = reader2.GetDateTime(1);
-                int stajBaslangicOnay = reader2.GetInt32(2);
-                DateTime stajBitis = reader2.GetDateTime(3);
-                int stajBitisOnay = reader2.GetInt32(4);
-                int stajEvrakTeslim = reader2.GetInt32(5);
-                int ZstajYazi = reader2.GetInt32(6);
-                int ENDYazi = reader2.GetInt32(7);
-                int DilekceVerildiMi = reader2.GetInt32(8);
-                int KabulGetirildiMi = reader2.GetInt32(9);
-                int Mustehaklik = reader2.GetInt32(10);
-                int KimlikFotokopi = reader2.GetInt32(11);
-                int StajDegerlendirmeF = reader2.GetInt32(12);
-                int StajRap = reader2.GetInt32(13);
-                string Aciklama = reader2.GetString(14);
+                while (reader2.Read())
+                {
 
-                stajYerTB.Text = stajYeri;
-                dateTimePicker1.Value = stajBaslangic;
-                dateTimePicker2.Value = stajBitis;
-                if (stajBaslangicOnay == 1) { stajStartCB.Checked = true; } else { stajStartCB.Checked = false; };
-                if (stajBitisOnay == 1) { stajBitisCB.Checked = true; } else { stajBitisCB.Checked = false; };
-                if (stajEvrakTeslim == 1) { stajTeslimCB.Checked = true; } else { stajTeslimCB.Checked = false; };
-                zStajYTB.Text = ZstajYazi.ToString();
-                endTB.Text = ENDYazi.ToString();
-                if (DilekceVerildiMi == 1) { bDilekceCBOX.Checked = true; } else { bDilekceCBOX.Checked = false; };
-                if (KabulGetirildiMi == 1) { kabulCBOX.Checked = true; } else { kabulCBOX.Checked = false; };
-                if (Mustehaklik == 1) { mustehakCBOX.Checked = true; } else { mustehakCBOX.Checked = false; };
-                if (KimlikFotokopi == 1) { kfotokCBOX.Checked = true; } else { kfotokCBOX.Checked = false; };
-                if (StajDegerlendirmeF == 1) { dFormCBOX.Checked = true; } else { dFormCBOX.Checked = false; };
-                if (StajRap == 1) { sRaporCBOX.Checked = true; } else { sRaporCBOX.Checked = false; }
-                aciklamaRTB.Text = Aciklama.ToString();
 
+                    string stajYeri = reader2.GetString(0);
+                    DateTime stajBaslangic = reader2.GetDateTime(1);
+                    int stajBaslangicOnay = reader2.GetInt32(2);
+                    DateTime stajBitis = reader2.GetDateTime(3);
+                    int stajBitisOnay = reader2.GetInt32(4);
+                    int stajEvrakTeslim = reader2.GetInt32(5);
+                    int ZstajYazi = reader2.GetInt32(6);
+                    int ENDYazi = reader2.GetInt32(7);
+                    int DilekceVerildiMi = reader2.GetInt32(8);
+                    int KabulGetirildiMi = reader2.GetInt32(9);
+                    int Mustehaklik = reader2.GetInt32(10);
+                    int KimlikFotokopi = reader2.GetInt32(11);
+                    int StajDegerlendirmeF = reader2.GetInt32(12);
+                    int StajRap = reader2.GetInt32(13);
+                    string Aciklama = reader2.GetString(14);
+
+                    stajYerTB.Text = stajYeri;
+                    dateTimePicker1.Value = stajBaslangic;
+                    dateTimePicker2.Value = stajBitis;
+                    if (stajBaslangicOnay == 1) { stajStartCB.Checked = true; } else { stajStartCB.Checked = false; };
+                    if (stajBitisOnay == 1) { stajBitisCB.Checked = true; } else { stajBitisCB.Checked = false; };
+                    if (stajEvrakTeslim == 1) { stajTeslimCB.Checked = true; } else { stajTeslimCB.Checked = false; };
+                    zStajYTB.Text = ZstajYazi.ToString();
+                    endTB.Text = ENDYazi.ToString();
+                    if (DilekceVerildiMi == 1) { bDilekceCBOX.Checked = true; } else { bDilekceCBOX.Checked = false; };
+                    if (KabulGetirildiMi == 1) { kabulCBOX.Checked = true; } else { kabulCBOX.Checked = false; };
+                    if (Mustehaklik == 1) { mustehakCBOX.Checked = true; } else { mustehakCBOX.Checked = false; };
+                    if (KimlikFotokopi == 1) { kfotokCBOX.Checked = true; } else { kfotokCBOX.Checked = false; };
+                    if (StajDegerlendirmeF == 1) { dFormCBOX.Checked = true; } else { dFormCBOX.Checked = false; };
+                    if (StajRap == 1) { sRaporCBOX.Checked = true; } else { sRaporCBOX.Checked = false; }
+                    aciklamaRTB.Text = Aciklama.ToString();
+                    
+
+
+
+                }
             }
+            else
+            {
+                stajYerTB.Text = "";
+                dateTimePicker1.Value = new DateTime(2023, 1, 1);
+                dateTimePicker2.Value = new DateTime(2023, 1, 1);
+                stajStartCB.Checked = false;
+                stajBitisCB.Checked = false;
+                stajTeslimCB.Checked = false;
+                zStajYTB.Text = "";
+                endTB.Text = "";
+                bDilekceCBOX.Checked = false;
+                kabulCBOX.Checked = false;
+                mustehakCBOX.Checked = false;
+                kfotokCBOX.Checked = false;
+                dFormCBOX.Checked = false;
+                sRaporCBOX.Checked = false;
+                aciklamaRTB.Text = "";
+                
+            }
+           
             reader2.Close();
+         
             connection.Close();
         }
-        private void kayitEkle()
+        private void kayitSil(int kayiti, int sTipi)
         {
-
+            string stabqueryString = $"DELETE FROM stajbilgileri WHERE ogrenci_ID = {kayiti} AND StajType = {sTipi}";
+            MySqlCommand stacommand = new MySqlCommand(stabqueryString, connection);
+            connection.Open();
+            stacommand.ExecuteNonQuery();
+            connection.Close();
+            DialogResult result = MessageBox.Show("Öğrenciyi tamamen silmek ister misiniz?", "Sil", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes) {
+                string ogrbqueryString = $"DELETE FROM ogrencibilgileri WHERE ID = {kayiti}";
+               
+                MySqlCommand ogrcommand = new MySqlCommand(ogrbqueryString, connection);
+                
+                connection.Open();
+                ogrcommand.ExecuteNonQuery();
+               
+                connection.Close();
+                    }
+            else if(result == DialogResult.No)
+            {
+                
+                
+            }
+            reload();
         }
+
         private void kaydet()
         {
             int satir;
@@ -131,6 +183,8 @@ namespace Project
             satir = komut.ExecuteNonQuery();
             MessageBox.Show(satir + " öğrenci eklendi");
             komut.Dispose();
+            connection.Close();
+            connection.Open();
             MySqlCommand komut2 = new MySqlCommand();
             komut2.CommandText = "INSERT INTO `stajbilgileri` (`ogrenci_ID`, `staj_ID`, `StajType`, `StajYeri`, `StajBaslangic`, `StajBaslangicOnay`, `StajBitis`, `StajBitisOnay`, `StajEvrakTeslim`, `ZStajYazi`, `ENDYazi`, `DilekceVerildiMi`, `KabulGetirdiMi`, `Mustehaklik`, `KimlikFotokopi`, `StajDegerlendirmeF`, `StajRap`, `Aciklama`)" +
                 " VALUES (@KayitNo, NULL, @StajTipi,@StajYeri, @BaslangicT, @BasladiMi, @BitisT, @BittiMi, @TeslimEdildiMi, @Zyazi,@ENDYazi, @DilekceVerildiMi, @KabulGetirdiMi, @Mustehaklik, @KimlikFotokopi, @StajDegerlendirmeF, @StajRap, @Aciklama)";
@@ -163,6 +217,7 @@ namespace Project
             else { komut2.Parameters.AddWithValue("@StajRap", 0); }
             komut2.Parameters.AddWithValue("@Aciklama", aciklamaRTB.Text);
             komut2.Connection = connection;
+            komut2.ExecuteNonQuery();
             komut2.Dispose();
 
             connection.Close();
@@ -203,12 +258,19 @@ namespace Project
 
         private void nextBTN_Click(object sender, EventArgs e)
         {
+            connection.Open();
+            string sayimquery = "SELECT COUNT(ID) FROM ogrencibilgileri";
+            MySqlCommand symcomand = new MySqlCommand(sayimquery, connection);
+            int sonsayi = Convert.ToInt32(symcomand.ExecuteScalar());
+            connection.Close();
             int x = 0;
             string sKodu = stajKODCB.Text;
             int kayiti = Convert.ToInt32(kayitNoTB.Text);
             kayiti = kayiti + 1;
-            verileriOku(kayiti, sKodu,x);
+            if(kayiti > sonsayi) { kayiti = sonsayi; }
             kayitNoTB.Text = kayiti.ToString();
+            verileriOku(kayiti, sKodu,x);
+            
         }
 
         private void backBTN_Click(object sender, EventArgs e)
@@ -285,6 +347,36 @@ namespace Project
         private void saveBTN_Click(object sender, EventArgs e)
         {
             kaydet();
+        }
+
+        private void deleteBTN_Click(object sender, EventArgs e)
+        {
+            int i = Convert.ToInt32(kayitNoTB.Text);
+            int sTipi = stajKODCB.SelectedIndex;
+            DialogResult result = MessageBox.Show("Kaydı silmek istediğinize emin misiniz?", "Sil", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes) { kayitSil(i, sTipi); }
+            else { };
+        }
+        private void reload()
+        {
+
+            {
+                int x = 0;
+                int y;
+                if (stajKODCB.SelectedIndex == 0)
+                {
+                    y = 0;
+
+                }
+                else
+                {
+                    y = 1;
+                }
+
+                string sKodu = stajKODCB.Text;
+                int kayiti = Convert.ToInt32(kayitNoTB.Text);
+                verileriOku(kayiti, sKodu, x, y);
+            }
         }
     }
 }

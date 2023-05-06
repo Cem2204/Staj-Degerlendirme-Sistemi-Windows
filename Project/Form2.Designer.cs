@@ -160,10 +160,10 @@
             // 
             this.firstSelectBTN.BackColor = System.Drawing.Color.Transparent;
             this.firstSelectBTN.Image = global::Project.Properties.Resources.icons8_first_501;
-            this.firstSelectBTN.Location = new System.Drawing.Point(25, 917);
+            this.firstSelectBTN.Location = new System.Drawing.Point(336, 917);
             this.firstSelectBTN.Margin = new System.Windows.Forms.Padding(4);
             this.firstSelectBTN.Name = "firstSelectBTN";
-            this.firstSelectBTN.Size = new System.Drawing.Size(68, 59);
+            this.firstSelectBTN.Size = new System.Drawing.Size(69, 62);
             this.firstSelectBTN.TabIndex = 3;
             this.firstSelectBTN.UseVisualStyleBackColor = false;
             this.firstSelectBTN.Click += new System.EventHandler(this.firstSelectBTN_Click);
@@ -172,10 +172,10 @@
             // 
             this.nextBTN.BackColor = System.Drawing.Color.Transparent;
             this.nextBTN.Image = global::Project.Properties.Resources.icons8_next_50;
-            this.nextBTN.Location = new System.Drawing.Point(253, 917);
+            this.nextBTN.Location = new System.Drawing.Point(1052, 917);
             this.nextBTN.Margin = new System.Windows.Forms.Padding(4);
             this.nextBTN.Name = "nextBTN";
-            this.nextBTN.Size = new System.Drawing.Size(68, 59);
+            this.nextBTN.Size = new System.Drawing.Size(82, 62);
             this.nextBTN.TabIndex = 4;
             this.nextBTN.UseVisualStyleBackColor = false;
             this.nextBTN.Click += new System.EventHandler(this.nextBTN_Click);
@@ -184,10 +184,10 @@
             // 
             this.backBTN.BackColor = System.Drawing.Color.Transparent;
             this.backBTN.Image = global::Project.Properties.Resources.icons8_previous_50;
-            this.backBTN.Location = new System.Drawing.Point(101, 917);
+            this.backBTN.Location = new System.Drawing.Point(413, 917);
             this.backBTN.Margin = new System.Windows.Forms.Padding(4);
             this.backBTN.Name = "backBTN";
-            this.backBTN.Size = new System.Drawing.Size(68, 59);
+            this.backBTN.Size = new System.Drawing.Size(68, 62);
             this.backBTN.TabIndex = 1;
             this.backBTN.UseVisualStyleBackColor = false;
             this.backBTN.Click += new System.EventHandler(this.backBTN_Click);
@@ -196,10 +196,10 @@
             // 
             this.searchBTN.BackColor = System.Drawing.Color.Transparent;
             this.searchBTN.Image = global::Project.Properties.Resources.icons8_google_web_search_50;
-            this.searchBTN.Location = new System.Drawing.Point(177, 917);
+            this.searchBTN.Location = new System.Drawing.Point(593, 917);
             this.searchBTN.Margin = new System.Windows.Forms.Padding(4);
             this.searchBTN.Name = "searchBTN";
-            this.searchBTN.Size = new System.Drawing.Size(68, 59);
+            this.searchBTN.Size = new System.Drawing.Size(77, 62);
             this.searchBTN.TabIndex = 2;
             this.searchBTN.UseVisualStyleBackColor = false;
             this.searchBTN.Click += new System.EventHandler(this.searchBTN_Click);
@@ -208,10 +208,10 @@
             // 
             this.endBTN.BackColor = System.Drawing.Color.Transparent;
             this.endBTN.Image = global::Project.Properties.Resources.icons8_last_50;
-            this.endBTN.Location = new System.Drawing.Point(329, 917);
+            this.endBTN.Location = new System.Drawing.Point(1145, 917);
             this.endBTN.Margin = new System.Windows.Forms.Padding(4);
             this.endBTN.Name = "endBTN";
-            this.endBTN.Size = new System.Drawing.Size(68, 59);
+            this.endBTN.Size = new System.Drawing.Size(82, 62);
             this.endBTN.TabIndex = 5;
             this.endBTN.UseVisualStyleBackColor = false;
             this.endBTN.Click += new System.EventHandler(this.endBTN_Click);
@@ -220,10 +220,10 @@
             // 
             this.addBTN.BackColor = System.Drawing.Color.Transparent;
             this.addBTN.Image = global::Project.Properties.Resources.icons8_add_new_50;
-            this.addBTN.Location = new System.Drawing.Point(439, 917);
+            this.addBTN.Location = new System.Drawing.Point(678, 917);
             this.addBTN.Margin = new System.Windows.Forms.Padding(4);
             this.addBTN.Name = "addBTN";
-            this.addBTN.Size = new System.Drawing.Size(68, 59);
+            this.addBTN.Size = new System.Drawing.Size(75, 62);
             this.addBTN.TabIndex = 6;
             this.addBTN.UseVisualStyleBackColor = false;
             this.addBTN.Click += new System.EventHandler(this.addBTN_Click);
@@ -232,22 +232,23 @@
             // 
             this.deleteBTN.BackColor = System.Drawing.Color.Transparent;
             this.deleteBTN.Image = global::Project.Properties.Resources.icons8_waste_50;
-            this.deleteBTN.Location = new System.Drawing.Point(515, 917);
+            this.deleteBTN.Location = new System.Drawing.Point(841, 917);
             this.deleteBTN.Margin = new System.Windows.Forms.Padding(4);
             this.deleteBTN.Name = "deleteBTN";
             this.deleteBTN.Padding = new System.Windows.Forms.Padding(13, 12, 13, 12);
-            this.deleteBTN.Size = new System.Drawing.Size(68, 59);
+            this.deleteBTN.Size = new System.Drawing.Size(76, 62);
             this.deleteBTN.TabIndex = 7;
             this.deleteBTN.UseVisualStyleBackColor = false;
+            this.deleteBTN.Click += new System.EventHandler(this.deleteBTN_Click);
             // 
             // saveBTN
             // 
             this.saveBTN.BackColor = System.Drawing.Color.Transparent;
             this.saveBTN.Image = global::Project.Properties.Resources.icons8_save_as_50;
-            this.saveBTN.Location = new System.Drawing.Point(591, 917);
+            this.saveBTN.Location = new System.Drawing.Point(761, 917);
             this.saveBTN.Margin = new System.Windows.Forms.Padding(4);
             this.saveBTN.Name = "saveBTN";
-            this.saveBTN.Size = new System.Drawing.Size(68, 59);
+            this.saveBTN.Size = new System.Drawing.Size(69, 62);
             this.saveBTN.TabIndex = 8;
             this.saveBTN.UseVisualStyleBackColor = false;
             this.saveBTN.Click += new System.EventHandler(this.saveBTN_Click);
@@ -255,10 +256,10 @@
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.pictureBox1.Location = new System.Drawing.Point(25, 917);
+            this.pictureBox1.Location = new System.Drawing.Point(343, 917);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(633, 62);
+            this.pictureBox1.Size = new System.Drawing.Size(884, 62);
             this.pictureBox1.TabIndex = 13;
             this.pictureBox1.TabStop = false;
             // 
@@ -642,7 +643,6 @@
             // 
             // stajKODCB
             // 
-            this.stajKODCB.FormattingEnabled = true;
             this.stajKODCB.Items.AddRange(new object[] {
             "END300",
             "END400"});
@@ -651,6 +651,7 @@
             this.stajKODCB.Name = "stajKODCB";
             this.stajKODCB.Size = new System.Drawing.Size(331, 24);
             this.stajKODCB.TabIndex = 19;
+            this.stajKODCB.Text = "END300";
             // 
             // stajYerTB
             // 
