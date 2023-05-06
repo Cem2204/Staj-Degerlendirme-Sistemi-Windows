@@ -16,23 +16,24 @@ namespace Project
     public partial class Form2 : Form
     {
         MySqlConnection connection = new MySqlConnection("Server = localhost;Database = projectdb; user=root;Pwd=");
-        
+
         public Form2()
         {
             InitializeComponent();
-            
+
         }
         private void verileriOku(int kayiti, string sKodu, int x, int y = 0)
         {
             string ogrbqueryString = "";
             string stabqueryString = "";
-            
-            if (x == 0) {
+
+            if (x == 0)
+            {
                 ogrbqueryString = $"SELECT ID, TCNO, Ad, Soyad, OGRNO, Sinif, TELNO, EMail FROM ogrencibilgileri WHERE ID = {kayiti}";
                 stabqueryString = $"SELECT StajYeri, StajBaslangic, StajBaslangicOnay, StajBitis, StajBitisOnay, StajEvrakTeslim, ZstajYazi, ENDYazi, DilekceVerildiMi, KabulGetirdiMi, Mustehaklik, KimlikFotokopi, StajDegerlendirmeF, StajRap, Aciklama FROM stajbilgileri WHERE ogrenci_ID = {kayiti} AND StajType = {y}";
-                
+
             }
-            else if(x == 1)
+            else if (x == 1)
             {
                 ogrbqueryString = $"SELECT ID,TCNO, Ad, Soyad, OGRNO, Sinif, TELNO, EMail FROM ogrencibilgileri ORDER BY ID DESC LIMIT 1";
                 stabqueryString = $"SELECT StajYeri, StajBaslangic, StajBaslangicOnay, StajBitis, StajBitisOnay, StajEvrakTeslim, ZstajYazi, ENDYazi, DilekceVerildiMi, KabulGetirdiMi, Mustehaklik, KimlikFotokopi, StajDegerlendirmeF, StajRap, Aciklama FROM stajbilgileri WHERE StajType = {y} ORDER BY ogrenci_ID DESC LIMIT 1";
@@ -45,7 +46,7 @@ namespace Project
             }
             MySqlCommand ogrcommand = new MySqlCommand(ogrbqueryString, connection);
             MySqlCommand stacommand = new MySqlCommand(stabqueryString, connection);
-            
+
             connection.Open();
             MySqlDataReader reader = ogrcommand.ExecuteReader();
 
@@ -109,7 +110,7 @@ namespace Project
                     if (StajDegerlendirmeF == 1) { dFormCBOX.Checked = true; } else { dFormCBOX.Checked = false; };
                     if (StajRap == 1) { sRaporCBOX.Checked = true; } else { sRaporCBOX.Checked = false; }
                     aciklamaRTB.Text = Aciklama.ToString();
-                    
+
 
 
 
@@ -132,11 +133,11 @@ namespace Project
                 dFormCBOX.Checked = false;
                 sRaporCBOX.Checked = false;
                 aciklamaRTB.Text = "";
-                
+
             }
-           
+
             reader2.Close();
-         
+
             connection.Close();
         }
         private void kayitSil(int kayiti, int sTipi)
@@ -147,22 +148,23 @@ namespace Project
             stacommand.ExecuteNonQuery();
             connection.Close();
             DialogResult result = MessageBox.Show("Öğrenciyi tamamen silmek ister misiniz?", "Sil", MessageBoxButtons.YesNo);
-            if (result == DialogResult.Yes) {
+            if (result == DialogResult.Yes)
+            {
                 string ogrbqueryString = $"DELETE FROM ogrencibilgileri WHERE ID = {kayiti}";
-               
+
                 MySqlCommand ogrcommand = new MySqlCommand(ogrbqueryString, connection);
-                
+
                 connection.Open();
                 ogrcommand.ExecuteNonQuery();
-               
+
                 connection.Close();
-                    }
-            else if(result == DialogResult.No)
-            {
-                
-                
             }
-            reload();
+            else if (result == DialogResult.No)
+            {
+
+
+            }
+
         }
 
         private void kaydet()
@@ -171,7 +173,7 @@ namespace Project
             connection.Open();
             MySqlCommand komut = new MySqlCommand();
             komut.CommandText = "INSERT INTO `ogrencibilgileri` (`ID`, `TCNO`, `Ad`, `Soyad`, `OGRNO`, `Sinif`, `TELNO`, `EMail`) VALUES (@Kayitno, @TC, @Ad, @Soyad, @OGRNO, @Sinif, @TelNo, @Mail)";
-            komut.Parameters.AddWithValue("@Kayitno",Convert.ToInt32(kayitNoTB.Text));
+            komut.Parameters.AddWithValue("@Kayitno", Convert.ToInt32(kayitNoTB.Text));
             komut.Parameters.AddWithValue("@TC", Convert.ToInt64(tcTB.Text));
             komut.Parameters.AddWithValue("@Ad", adTB.Text);
             komut.Parameters.AddWithValue("@Soyad", soyadTB.Text);
@@ -192,10 +194,10 @@ namespace Project
             komut2.Parameters.AddWithValue("@StajTipi", stajKODCB.SelectedIndex);
             komut2.Parameters.AddWithValue("@StajYeri", stajYerTB.Text);
             komut2.Parameters.AddWithValue("@BaslangicT", dateTimePicker1.Value);
-            if (stajStartCB.Checked){komut2.Parameters.AddWithValue("@BasladiMi", 1);}
-            else { komut2.Parameters.AddWithValue("BasladiMi", 0);}
-            
-  
+            if (stajStartCB.Checked) { komut2.Parameters.AddWithValue("@BasladiMi", 1); }
+            else { komut2.Parameters.AddWithValue("BasladiMi", 0); }
+
+
             komut2.Parameters.AddWithValue("@BitisT", dateTimePicker2.Value);
             if (stajBitisCB.Checked) { komut2.Parameters.AddWithValue("@BittiMi", 1); }
             else { komut2.Parameters.AddWithValue("BittiMi", 0); }
@@ -228,7 +230,7 @@ namespace Project
             int x = 0;
             int i = Convert.ToInt32(kayitNoTB.Text);
             string sKodu = "END300";
-            verileriOku(i,sKodu,x);
+            verileriOku(i, sKodu, x);
 
         }
 
@@ -236,19 +238,19 @@ namespace Project
         {
             int x = 0;
             int y;
-            if(stajKODCB.SelectedIndex == 0)
+            if (stajKODCB.SelectedIndex == 0)
             {
-                 y = 0;
+                y = 0;
 
             }
             else
             {
-                 y = 1;
+                y = 1;
             }
 
             string sKodu = stajKODCB.Text;
             int kayiti = Convert.ToInt32(kayitNoTB.Text);
-            verileriOku(kayiti, sKodu,x,y);
+            verileriOku(kayiti, sKodu, x, y);
         }
 
         private void stajTeslimCB_CheckedChanged(object sender, EventArgs e)
@@ -267,10 +269,10 @@ namespace Project
             string sKodu = stajKODCB.Text;
             int kayiti = Convert.ToInt32(kayitNoTB.Text);
             kayiti = kayiti + 1;
-            if(kayiti > sonsayi) { kayiti = sonsayi; }
+            if (kayiti > sonsayi) { kayiti = sonsayi; }
             kayitNoTB.Text = kayiti.ToString();
-            verileriOku(kayiti, sKodu,x);
-            
+            verileriOku(kayiti, sKodu, x);
+
         }
 
         private void backBTN_Click(object sender, EventArgs e)
@@ -279,8 +281,8 @@ namespace Project
             string sKodu = stajKODCB.Text;
             int kayiti = Convert.ToInt32(kayitNoTB.Text);
             kayiti = kayiti - 1;
-            if(kayiti < 1) { kayiti = 1; }
-            verileriOku(kayiti, sKodu,x);
+            if (kayiti < 1) { kayiti = 1; }
+            verileriOku(kayiti, sKodu, x);
             kayitNoTB.Text = kayiti.ToString();
         }
 
@@ -289,8 +291,8 @@ namespace Project
             int x = 2;
             string sKodu = stajKODCB.Text;
             int kayiti = Convert.ToInt32(kayitNoTB.Text);
-            kayiti =  1;
-            verileriOku(kayiti, sKodu,x);
+            kayiti = 1;
+            verileriOku(kayiti, sKodu, x);
             kayitNoTB.Text = kayiti.ToString();
         }
 
@@ -311,7 +313,7 @@ namespace Project
 
         private void addBTN_Click(object sender, EventArgs e)
         {
-            
+
             tcTB.Text = "";
             adTB.Text = "";
             soyadTB.Text = "";
@@ -321,7 +323,7 @@ namespace Project
             sinifTB.Text = "";
             stajKODCB.SelectedIndex = 0;
             stajYerTB.Text = "";
-            dateTimePicker1.Value = new DateTime(2023,1,1);
+            dateTimePicker1.Value = new DateTime(2023, 1, 1);
             dateTimePicker2.Value = new DateTime(2023, 1, 1);
             stajStartCB.Checked = false;
             stajBitisCB.Checked = false;
@@ -340,7 +342,7 @@ namespace Project
             MySqlCommand symcomand = new MySqlCommand(sayimquery, connection);
             int sonsayi = Convert.ToInt32(symcomand.ExecuteScalar());
             connection.Close();
-            kayitNoTB.Text = (sonsayi+1).ToString();
+            kayitNoTB.Text = (sonsayi + 1).ToString();
 
         }
 
@@ -357,26 +359,9 @@ namespace Project
             if (result == DialogResult.Yes) { kayitSil(i, sTipi); }
             else { };
         }
-        private void reload()
-        {
-
-            {
-                int x = 0;
-                int y;
-                if (stajKODCB.SelectedIndex == 0)
-                {
-                    y = 0;
-
-                }
-                else
-                {
-                    y = 1;
-                }
-
-                string sKodu = stajKODCB.Text;
-                int kayiti = Convert.ToInt32(kayitNoTB.Text);
-                verileriOku(kayiti, sKodu, x, y);
-            }
-        }
     }
 }
+
+
+        
+
