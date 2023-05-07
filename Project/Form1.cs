@@ -70,6 +70,9 @@ namespace Project
                 else if (userType == "1")
                 {
                     MessageBox.Show("Hoca Giriş Yaptı");
+                    Form3 form3 = new Form3();
+                    this.Hide();
+                    form3.Show();
                 }
                 else
                 {
