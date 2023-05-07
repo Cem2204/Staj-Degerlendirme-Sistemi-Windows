@@ -77,6 +77,7 @@
             // 
             this.parolaTB.Location = new System.Drawing.Point(320, 175);
             this.parolaTB.Name = "parolaTB";
+            this.parolaTB.PasswordChar = '*';
             this.parolaTB.Size = new System.Drawing.Size(213, 22);
             this.parolaTB.TabIndex = 4;
             // 

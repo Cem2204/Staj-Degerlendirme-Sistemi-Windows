@@ -36,6 +36,7 @@ namespace Project
                 adCOMBO.Items.Add(reader.GetString("AdSoyad"));
             }
             connection.Close();
+            adCOMBO.SelectedIndex = 0;
         }
 
         private void adCOMBO_SelectedIndexChanged(object sender, EventArgs e)

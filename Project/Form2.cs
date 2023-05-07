@@ -133,7 +133,7 @@ namespace Project
                 dFormCBOX.Checked = false;
                 sRaporCBOX.Checked = false;
                 aciklamaRTB.Text = "";
-
+                
             }
 
             reader2.Close();
@@ -359,6 +359,8 @@ namespace Project
             if (result == DialogResult.Yes) { kayitSil(i, sTipi); }
             else { };
         }
+
+        
     }
 }
 

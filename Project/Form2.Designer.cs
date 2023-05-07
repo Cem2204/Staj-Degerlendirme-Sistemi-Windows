@@ -40,7 +40,6 @@
             this.deleteBTN = new System.Windows.Forms.Button();
             this.saveBTN = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.basariCB = new System.Windows.Forms.ComboBox();
             this.kayitNoTB = new System.Windows.Forms.TextBox();
             this.label22 = new System.Windows.Forms.Label();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
@@ -126,7 +125,6 @@
             this.firstBTN.Controls.Add(this.deleteBTN);
             this.firstBTN.Controls.Add(this.saveBTN);
             this.firstBTN.Controls.Add(this.pictureBox1);
-            this.firstBTN.Controls.Add(this.basariCB);
             this.firstBTN.Controls.Add(this.kayitNoTB);
             this.firstBTN.Controls.Add(this.label22);
             this.firstBTN.Controls.Add(this.checkBox1);
@@ -262,15 +260,6 @@
             this.pictureBox1.Size = new System.Drawing.Size(884, 62);
             this.pictureBox1.TabIndex = 13;
             this.pictureBox1.TabStop = false;
-            // 
-            // basariCB
-            // 
-            this.basariCB.FormattingEnabled = true;
-            this.basariCB.Location = new System.Drawing.Point(479, 43);
-            this.basariCB.Margin = new System.Windows.Forms.Padding(4);
-            this.basariCB.Name = "basariCB";
-            this.basariCB.Size = new System.Drawing.Size(129, 24);
-            this.basariCB.TabIndex = 12;
             // 
             // kayitNoTB
             // 
@@ -931,7 +920,6 @@
         private System.Windows.Forms.TextBox ogrNoTB;
         private System.Windows.Forms.TextBox soyadTB;
         private System.Windows.Forms.TextBox adTB;
-        private System.Windows.Forms.ComboBox basariCB;
         private System.Windows.Forms.TextBox kayitNoTB;
         private System.Windows.Forms.Button firstSelectBTN;
         private System.Windows.Forms.Button nextBTN;
